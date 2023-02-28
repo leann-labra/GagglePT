@@ -1,0 +1,20 @@
+{
+  "name": "gagglept",
+  "version": "1.0.0",
+  "description": "A teaching aid to help students formulate questions about code, troubleshoot code, and other wonders! ",
+  "main": " ",
+  "scripts": {
+    "test": "npm run test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leann-labra/GagglePT.git"
+  },
+  "author": "Leann Labra, Michael Thomas Lomax, Kaylee Nguyen, Ethan De La Rosa  and Cherie Walker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leann-labra/GagglePT/issues"
+  },
+  "homepage": "https://github.com/leann-labra/GagglePT#readme"
+}
