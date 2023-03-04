@@ -31,6 +31,6 @@ type: Boolean,
   ],
 });
 
-const Thought = model("Conversations", conversationsSchema);
+const Conversations = model("Conversations", conversationsSchema);
 
-module.exports = Thought;
+module.exports = Conversations;

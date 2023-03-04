@@ -22,13 +22,14 @@
   },
   "homepage": "https://github.com/leann-labra/GagglePT#readme",
   "dependencies": {
-    "nodemon": "^2.0.20",
     "apollo-server-express": "^3.6.2",
     "bcrypt": "^5.0.0",
+    "concurrently": "^7.6.0",
+    "cors": "^2.8.5",
     "express": "^4.17.2",
     "graphql": "^16.3.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.8",
-    "cors": "^2.8.5"
+    "nodemon": "^2.0.20"
   }
 }
