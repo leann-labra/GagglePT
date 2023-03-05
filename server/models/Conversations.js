@@ -13,9 +13,9 @@ const conversationsSchema = new Schema({
     trim: true,
   },
 
-bookmarks:{
-type: Boolean,
-},
+  bookmarks: {
+    type: Boolean,
+  },
 
   reply: [
     {
@@ -31,6 +31,6 @@ type: Boolean,
   ],
 });
 
-const Thought = model("Conversations", conversationsSchema);
+const Conversations = model("Conversations", conversationsSchema);
 
-module.exports = Thought;
+module.exports = Conversations;
