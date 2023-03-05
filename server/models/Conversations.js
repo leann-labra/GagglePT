@@ -13,9 +13,9 @@ const conversationsSchema = new Schema({
     trim: true,
   },
 
-bookmarks:{
-type: Boolean,
-},
+  bookmarks: {
+    type: Boolean,
+  },
 
   reply: [
     {
