@@ -1,6 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Conversations } = require("../models");
-//const { signToken } = require('../utils/auth');
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -48,10 +48,32 @@ const resolvers = {
 
       return { token, user };
     },
-    addConversation: async (parent, { question }, context) => {},
-    // addCategory:
-    // addConversation:
-    // deleteCategory:
-    // deleteConversation
+    addConversation: async (parent, { question, reply }) => {
+      return Conversations.create({ question, reply });
+    },
+    addCategory: async (parent, { convoId, category }) => {
+      return Conversations.findOneAndUpdate(
+        { _id: convoId },
+        {
+          $addToSet: { category: { category } },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+    deleteConversation: async (parent, { convoId }) => {
+      return Conversation.findOneAndDelete({ _id: convoId });
+    },
+    deleteCategory: async (parent, { convoId, categoryId }) => {
+      return Conversation.findOneAndUpdate(
+        { _id: convoId },
+        { $pull: { category: { _id: categoryId } } },
+        { new: true }
+      );
+    },
   },
 };
+
+module.exports = resolvers;

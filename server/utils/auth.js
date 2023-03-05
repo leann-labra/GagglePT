@@ -1,5 +1,4 @@
-//boiler plate from hwks
-
+// ---BOILER PLATE FROM CLASS ACTIVITIES --- //
 const jwt = require("jsonwebtoken");
 
 // set token secret and expiration date
