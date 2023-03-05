@@ -1,0 +1,12 @@
+body {
+    background-color: rgb(56, 57, 58);
+}
+#category-title {
+    padding-top: 10px;
+    background-color: rgb(56, 57, 58);
+}
+.ui.fixed.sticky + #chatbox {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
