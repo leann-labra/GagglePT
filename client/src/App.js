@@ -7,16 +7,18 @@ function App() {
   const [response, setResponse] = useState('');
   
   const handleSubmit = (e) => {
+    console.log(message)
     e.preventDefault();
-    fetch('http://localhost:3001/' , {
+    fetch('/' , {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ message }),
+      body:message ,
     })
-    .then((res) => res.json())
-    .then((data) => setResponse(data.message));
+    // .then((res) => res.json())
+    // .then((data) => setResponse(data.message))
+    .catch(err => console.log(err))
   };
 
   return(
@@ -26,7 +28,7 @@ function App() {
       value={message}
       onChange={(e) => setMessage(e.target.value)}>        
       </textarea>
-      <button type="submit">submit</button>
+      <button type="submit">Submit</button>
     </form>
     <div>{response}</div>
     </div>
