@@ -15,7 +15,7 @@ const server = new ApolloServer({
 });
 
 const configuration = new Configuration({
-  organization: "org-oj4JLWAUgyqV3zBmg32q3ioe",
+  organization: process.env.ORG_KEY,
   apiKey: process.env.API_KEY,
 });
 
@@ -36,7 +36,8 @@ app.post("/", async (req, res) => {
       max_tokens: 10,
       temperature: 0.7,
     });
-    res.json(response);
+    console.log(response.data);
+    res.json(response.data.choices[0].text);
   } catch (err) {
     res.status(427).json(err);
   }
