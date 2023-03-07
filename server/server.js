@@ -4,6 +4,8 @@ const path = require("path");
 const cache = new InMemoryCache({ ...ApolloServer });
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
+const { Configuration, OpenAIApi } = require("openai");
+require("dotenv").config();
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -12,6 +14,13 @@ const server = new ApolloServer({
   resolvers,
 });
 
+const configuration = new Configuration({
+  organization: "org-oj4JLWAUgyqV3zBmg32q3ioe",
+  apiKey: process.env.API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -19,10 +28,18 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
 
-app.post('/', (req, res) => {
-  res.json({
-      message: "Hello World"
-  })
+app.post("/", async (req, res) => {
+  try {
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: req.body.message,
+      max_tokens: 10,
+      temperature: 0.7,
+    });
+    res.json(response);
+  } catch (err) {
+    res.status(427).json(err);
+  }
 });
 
 app.get("/", (req, res) => {
