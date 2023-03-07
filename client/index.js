@@ -34,5 +34,5 @@ app.post("/", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("example app listening");
+  console.log("example app listening localhost/");
 });
