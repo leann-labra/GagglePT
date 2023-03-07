@@ -7,13 +7,13 @@ const resolvers = {
     user: async () => {
       return User.find().populate("conversations");
     },
-    conversations: async (parent, { category }) => {
-      const params = category ? { category } : {};
-      return Conversations.find(params).sort({ createdAt: -1 });
-    },
-    conversation: async (parent, { conversationsId }) => {
-      return Conversations.findOne({ _id: conversationsId });
-    },
+    // conversations: async (parent, { category }) => {
+    //   const params = category ? { category } : {};
+    //   return Conversations.find(params).sort({ createdAt: -1 });
+    // },
+    // conversation: async (parent, { conversationsId }) => {
+    //   return Conversations.findOne({ _id: conversationsId });
+    // },
     //adding context to find logged in user
     me: async (parent, args, context) => {
       if (context.user) {
@@ -26,11 +26,11 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
-      const token = signToken(user);
-      return { token, user };
-    },
+    // addUser: async (parent, { username, email, password }) => {
+    //   const user = await User.create({ username, email, password });
+    //   const token = signToken(user);
+    //   return { token, user };
+    // },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -51,28 +51,28 @@ const resolvers = {
     addConversation: async (parent, { question, reply }) => {
       return Conversations.create({ question, reply });
     },
-    addCategory: async (parent, { convoId, category }) => {
-      return Conversations.findOneAndUpdate(
-        { _id: convoId },
-        {
-          $addToSet: { category: { category } },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
+    // addCategory: async (parent, { convoId, category }) => {
+    //   return Conversations.findOneAndUpdate(
+    //     { _id: convoId },
+    //     {
+    //       $addToSet: { category: { category } },
+    //     },
+    //     {
+    //       new: true,
+    //       runValidators: true,
+    //     }
+    //   );
+    // },
     deleteConversation: async (parent, { convoId }) => {
       return Conversation.findOneAndDelete({ _id: convoId });
     },
-    deleteCategory: async (parent, { convoId, categoryId }) => {
-      return Conversation.findOneAndUpdate(
-        { _id: convoId },
-        { $pull: { category: { _id: categoryId } } },
-        { new: true }
-      );
-    },
+    // deleteCategory: async (parent, { convoId, categoryId }) => {
+    //   return Conversation.findOneAndUpdate(
+    //     { _id: convoId },
+    //     { $pull: { category: { _id: categoryId } } },
+    //     { new: true }
+    //   );
+    // },
   },
 };
 
