@@ -16,7 +16,7 @@ const server = new ApolloServer({
 
 const configuration = new Configuration({
   organization: "org-abSR7516B4IB41q8Lg5gly8Z",
-  apiKey: "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",
+  apiKey: process.env.API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
