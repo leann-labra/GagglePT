@@ -48,21 +48,40 @@ const resolvers = {
 
       return { token, user };
     },
-    addConversation: async (parent, { question, reply }) => {
-      return Conversations.create({ question, reply });
-    },
-    // addCategory: async (parent, { convoId, category }) => {
-    //   return Conversations.findOneAndUpdate(
-    //     { _id: convoId },
-    //     {
-    //       $addToSet: { category: { category } },
-    //     },
-    //     {
-    //       new: true,
-    //       runValidators: true,
-    //     }
-    //   );
-    // },
+
+    addConversation: async (parent, { question, reply, category, convoId }) => {
+      const convo = {
+        question, 
+        reply,
+        convoId, 
+        category
+      };
+
+      return User.findOneAndUpdate(
+        { _id: userId },
+        {
+          $addToSet: {
+            savedConvos: convo,
+          },
+        },
+        {
+          new: true,
+          runValidators: true,
+        },
+      );
+    }
+    addCategory: async (parent, { userId, convoId, category }) => {
+      return Conversations.findOneAndUpdate(
+        { _id: convoId },
+        {
+          $addToSet: { category: { category } },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+
     deleteConversation: async (parent, { convoId }) => {
       return Conversation.findOneAndDelete({ _id: convoId });
     },
