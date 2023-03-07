@@ -41,6 +41,7 @@ function App() {
           <div className='chat-message ai'>
             <div className='chat-message-center'>
               <div className='avatar'>
+                {/* add svg??? */}
               </div>
               <div className='message'>
                 Hello from AI

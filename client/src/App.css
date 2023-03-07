@@ -101,6 +101,12 @@ background-color: lightslategrey;
   width: 40px;
   height: 40px;
 }
+.avatar.ai {
+  background-color: orange;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
 .message {
 
 }
