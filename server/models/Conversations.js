@@ -1,10 +1,14 @@
 const { Schema, model } = require("mongoose");
 
-const conversationsSchema = new Schema({
+// saving the convoSchema as a subdocument of Users since each user has saved chats
+const convoSchema = new Schema({
   category: {
     type: String,
   },
-
+  convoId: {
+    type: String,
+    required: true,
+  },
   question: {
     type: String,
     required: "Please ask away!",
@@ -31,6 +35,4 @@ const conversationsSchema = new Schema({
   ],
 });
 
-const Conversations = model("Conversations", conversationsSchema);
-
-module.exports = Conversations;
+module.exports = convoSchema;
