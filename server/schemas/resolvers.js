@@ -7,13 +7,13 @@ const resolvers = {
     user: async () => {
       return User.find().populate("conversations");
     },
-    conversations: async (parent, { category }) => {
-      const params = category ? { category } : {};
-      return Conversations.find(params).sort({ createdAt: -1 });
-    },
-    conversation: async (parent, { conversationsId }) => {
-      return Conversations.findOne({ _id: conversationsId });
-    },
+    // conversations: async (parent, { category }) => {
+    //   const params = category ? { category } : {};
+    //   return Conversations.find(params).sort({ createdAt: -1 });
+    // },
+    // conversation: async (parent, { conversationsId }) => {
+    //   return Conversations.findOne({ _id: conversationsId });
+    // },
     //adding context to find logged in user
     me: async (parent, args, context) => {
       if (context.user) {
@@ -51,10 +51,10 @@ const resolvers = {
 
     addConversation: async (parent, { question, reply, category, convoId }) => {
       const convo = {
-        question, 
+        question,
         reply,
-        convoId, 
-        category
+        convoId,
+        category,
       };
 
       return User.findOneAndUpdate(
@@ -67,7 +67,7 @@ const resolvers = {
         {
           new: true,
           runValidators: true,
-        },
+        }
       );
     },
     // addCategory: async (parent, { userId, convoId, category }) => {
@@ -92,7 +92,7 @@ const resolvers = {
     //     { new: true }
     //   );
     // }
-  }
+  },
 };
 
 module.exports = resolvers;
