@@ -4,15 +4,16 @@ import './normalize.css';
 import './App.css';
 
 function App() {
-  const [message, setMessage] = useState('');
-  const [response, setResponse] = useState('');
-  
+  const [message, setMessage] = useState("");
+  const [response, setResponse] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch('/' , {
       method: 'POST',
+
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ message }),
     })
@@ -68,6 +69,6 @@ function App() {
     <div>{response}</div>
     </div>
   );
-};
+}
 
-export default App
+export default App;
