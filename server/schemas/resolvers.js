@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Conversations } = require("../models");
+const { User } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -7,14 +7,7 @@ const resolvers = {
     user: async () => {
       return User.find().populate("conversations");
     },
-    // conversations: async (parent, { category }) => {
-    //   const params = category ? { category } : {};
-    //   return Conversations.find(params).sort({ createdAt: -1 });
-    // },
-    // conversation: async (parent, { conversationsId }) => {
-    //   return Conversations.findOne({ _id: conversationsId });
-    // },
-    //adding context to find logged in user
+
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate(
@@ -26,11 +19,11 @@ const resolvers = {
   },
 
   Mutation: {
-    // addUser: async (parent, { username, email, password }) => {
-    //   const user = await User.create({ username, email, password });
-    //   const token = signToken(user);
-    //   return { token, user };
-    // },
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+      return { token, user };
+    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -49,12 +42,11 @@ const resolvers = {
       return { token, user };
     },
 
-    addConversation: async (parent, { question, reply, category, convoId }) => {
+    addConversation: async (parent, { question, reply, convoId }) => {
       const convo = {
         question,
         reply,
         convoId,
-        category,
       };
 
       return User.findOneAndUpdate(
@@ -70,25 +62,6 @@ const resolvers = {
         }
       );
     },
-    // addCategory: async (parent, { userId, convoId, category }) => {
-    //   return Conversations.findOneAndUpdate(
-    //     { _id: convoId },
-    //     {
-    //       $addToSet: { category: { category } },
-    //     },
-    //     {
-    //       new: true,
-    //       runValidators: true,
-    //     }
-    //   );
-    // },
-    // deleteConversation: async (parent, { userId, convoId }) => {
-    //   await User.findOneAndUpdate(
-    //     { _id: userId },
-    //     { $pull: {savedConvos: { convoId: deletedConvo } } },
-    //     { new: true }
-    //     );
-    // },
   },
 };
 
