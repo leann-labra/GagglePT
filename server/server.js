@@ -38,7 +38,7 @@ app.post("/", async (req, res) => {
       temperature: 0.5,
     });
     console.log("RESPONSE!~ ", response.data);
-    // save to db here
+    // save response and req.body to graphql db
     res.json(response.data.choices[0].text);
   } catch (err) {
     res.status(427).json(err);
