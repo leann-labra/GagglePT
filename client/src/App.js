@@ -95,9 +95,9 @@ function App() {
             </div>
           </div>
           <div className="chat-input-holder">
-            <textarea className="chat-input-ta">
-
+            <textarea className="chat-input-ta" placeholder="Type here to chat...">
             </textarea>
+              <button className="submit-btn" type='button'>Goose it</button>
           </div>
 
         </section>
