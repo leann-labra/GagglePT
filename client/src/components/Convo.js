@@ -23,14 +23,16 @@ const Convo = ({ user }) => {
     }).then((data) => setResponse(data.conversation));
   };
   return (
-    <div>
+    <div className="chat-input-holder">
       {/* map fetched data here */}
       <form onSubmit={handleSubmit}>
         <textarea
+          className="chat-input-ta"
           value={conversation}
+          placeholder="Type here to chat..."
           onChange={(e) => setConversation(e.target.value)}
         ></textarea>
-        <button type="submit">submit</button>
+        <button type="submit">Goose It</button>
       </form>
       <div>{response}</div>
     </div>
