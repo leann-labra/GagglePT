@@ -3,7 +3,6 @@ import React from "react";
 import "./App.css";
 import "./normalize.css";
 
-
 //importing apollo client
 import {
   ApolloClient,
@@ -17,11 +16,12 @@ import { setContext } from "@apollo/client/link/context";
 
 // import routes from other pages and components here
 import Chat from "./components/Chat.js";
-import NavBar from "./components/Navbar.js";
+// import NavBar from "./components/Navbar.js";
 
 //accessing database from graphql
 const httpLink = createHttpLink({
   uri: "/graphql",
+  cache: new InMemoryCache(),
 });
 
 // ---TAKEN FROM ACTIVITIES SO MAY NEED ADJUSTMENTS AS SITE PROGRESSES--- //
@@ -47,7 +47,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       {/* add routes here for whichever pages or components if there are any */}
-      <NavBar />
+      {/* <NavBar /> */}
       <Chat />
     </ApolloProvider>
   );
