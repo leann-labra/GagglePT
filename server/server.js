@@ -42,7 +42,7 @@ app.post("/", async (req, res) => {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: req.body.userInput,
-      max_tokens: 10,
+      max_tokens: 100,
       temperature: 0.5,
     });
     console.log("RESPONSE!~ ", response.data);
@@ -61,6 +61,7 @@ app.post("/", async (req, res) => {
     } else {
       throw new Error(data.saveData.message);
     }
+    // save response and req.body to graphql db
     res.json(response.data.choices[0].text);
   } catch (err) {
     res.status(427).json(err);
