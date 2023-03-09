@@ -40,21 +40,16 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const [message, setMessage] = useState("");
-  const [response, setResponse] = useState("");
-
-  const handleSubmit = (e) => {
+  const [input, setInput] = useState("");
+  const [chatLog, setChatLog] = useState("");
+  async function handleSubmit(e) {
     e.preventDefault();
-    fetch("/", {
-      method: "POST",
+    setChatLog([...chatLog, {user : "me", message : `${input}`} ]);
+    setInput("");
 
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message }),
-    }).then((data) => setResponse(data.message));
-  };
-d
+    console.log("submit");
+  }
+
   return (
     <ApolloProvider client={client}>
       {/* add routes here for whichever pages or components if there are any */}
@@ -62,11 +57,11 @@ d
         <form onSubmit={handleSubmit}>
           <textarea
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={() => setMessage(message) = e.target.value}
           ></textarea>
           <button type="submit">submit</button>
         </form>
-        <div>{response}</div>
+        <div>{chatLog}</div>
       </div>
     </ApolloProvider>
   );
