@@ -3,7 +3,6 @@ import React from "react";
 import "./App.css";
 import "./normalize.css";
 
-
 //importing apollo client
 import {
   ApolloClient,
