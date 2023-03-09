@@ -7,7 +7,7 @@ function Chat() {
   const [userData, setUserData] = useState({});
   const userDataLength = Object.keys(userData).length;
   const { data } = useQuery(GET_USER, {
-    variables: { userId: Auth.getProfile().data._id },
+    variables: { username: Auth.getProfile().data._id },
   });
 
   const [userInput, setUserInput] = useState("");
