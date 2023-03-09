@@ -27,7 +27,7 @@ function Chat({ user }) {
           New Chat
         </div>
       </aside>
-      <section class="chatbox">
+      <section className="chatbox">
         <div className="chat-log">
           {/* user chat */}
           <div className="chat-message">
