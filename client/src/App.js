@@ -45,15 +45,14 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('/' , {
-      method: 'POST',
+    fetch("/", {
+      method: "POST",
 
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ message }),
-    })
-      .then((data) => setResponse(data.message));
+    }).then((data) => setResponse(data.message));
   };
 
   return (
