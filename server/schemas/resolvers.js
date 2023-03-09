@@ -70,18 +70,6 @@ const resolvers = {
         }
       );
     },
-    addCategory: async (parent, { userId, convoId, category }) => {
-      return Conversations.findOneAndUpdate(
-        { _id: convoId },
-        {
-          $addToSet: { category: { category } },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
     // addCategory: async (parent, { userId, convoId, category }) => {
     //   return Conversations.findOneAndUpdate(
     //     { _id: convoId },
@@ -92,18 +80,15 @@ const resolvers = {
     //       new: true,
     //       runValidators: true,
     //     }
-    //   )
-    // },
-    deleteConversation: async (parent, { convoId }) => {
-      return Conversation.findOneAndDelete({ _id: convoId });
-    },
-    // deleteCategory: async (parent, { convoId, categoryId }) => {
-    //   return Conversation.findOneAndUpdate(
-    //     { _id: convoId },
-    //     { $pull: { category: { _id: categoryId } } },
-    //     { new: true }
     //   );
-    // }
+    // },
+    // deleteConversation: async (parent, { userId, convoId }) => {
+    //   await User.findOneAndUpdate(
+    //     { _id: userId },
+    //     { $pull: {savedConvos: { convoId: deletedConvo } } },
+    //     { new: true }
+    //     );
+    // },
   },
 };
 

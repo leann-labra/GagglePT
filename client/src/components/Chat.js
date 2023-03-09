@@ -1,21 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
-function Chat() {
-  const [message, setMessage] = useState("");
-  const [response, setResponse] = useState("");
+import Convo from "./components/Convo.js";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("/", {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message }),
-    }).then((data) => setResponse(data.message));
-  };
-
+function Chat({ user }) {
   return (
     <div className="App">
     <aside className="side-menu">
@@ -55,7 +42,7 @@ function Chat() {
         </textarea>
           <button className="submit-btn" type='button'>Goose it</button>
       </div>
-
+      <Convo />
     </section>
   </div>
   );
