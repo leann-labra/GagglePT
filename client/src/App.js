@@ -46,6 +46,12 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+      <aside className="side-menu">
+        <div className="side-menu-button">
+          <span>+</span>
+          New Chat
+        </div>
+      </aside>
       {/* add routes here for whichever pages or components if there are any */}
       {/* <NavBar /> */}
       <Chat />
