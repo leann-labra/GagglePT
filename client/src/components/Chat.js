@@ -39,7 +39,7 @@ function Chat({ user }) {
             </div>
           </div>
           {/* ai chat */}
-          <div className="chat-message ai">
+          <div className="chat-message-ai">
             <div className="chat-message-center">
               <div className="avatar"></div>
               <div className="message">AI message: {response}</div>
