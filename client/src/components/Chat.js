@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./App.css";
+import "./normalize.css";
 
 function Chat() {
   const [message, setMessage] = useState("");
