@@ -14,3 +14,13 @@ export const GET_USER = gql`
         }
     }
 `;
+
+export const GET_CONVOS = gql`
+  subscription {
+    conversations {
+      id
+      user
+      text
+    }
+  }
+`;

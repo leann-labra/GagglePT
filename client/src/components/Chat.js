@@ -1,33 +1,11 @@
-import React, { useState } from "react";
-import "./App.css";
-import "./normalize.css";
+import React from "react";
 
-function Chat() {
-  const [message, setMessage] = useState("");
-  const [response, setResponse] = useState("");
+import Convo from "./components/Convo.js";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("/", {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message }),
-    }).then((data) => setResponse(data.message));
-  };
-
+function Chat({ user }) {
   return (
-    <div className="App">
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        ></textarea>
-        <button type="submit">submit</button>
-      </form>
-      <div>{response}</div>
+    <div>
+      <Convo />
     </div>
   );
 }
