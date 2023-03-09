@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Auth from "../utils/auth";
+import { useQuery } from "@apollo/client";
+import { GET_USER } from "../utils/queries";
 
-function Chat({ user }) {
+function Chat() {
+  const [userData, setUserData] = useState({});
+  const userDataLength = Object.keys(userData).length;
+  const { data } = useQuery(GET_USER, {
+    variables: { username: Auth.getProfile().data._id },
+  });
+
   const [userInput, setUserInput] = useState("");
   const [sentMessage, setSentMessage] = useState("");
   const [response, setResponse] = useState("");
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        if (!token) {
+          return false;
+        }
+        setUserData(data?.user || []);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getUserData();
+  });
+
   const handleSubmit = (e) => {
     setSentMessage(userInput);
     e.preventDefault();
     fetch("/", {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json",
       },
@@ -19,6 +43,11 @@ function Chat({ user }) {
       .then((data) => setResponse(data));
   };
   const handleChange = (e) => setUserInput(e.target.value);
+
+  if (!userDataLength) {
+    return <h2>LOADING...</h2>;
+  }
+
   return (
     <div className="App">
       <aside className="side-menu">
@@ -28,22 +57,24 @@ function Chat({ user }) {
         </div>
       </aside>
       <section className="chatbox">
-        <div className="chat-log">
-          {/* user chat */}
-          <div className="chat-message">
-            <div className="chat-message-center">
-              <div className="avatar"></div>
-              <div className="message">User chat : {sentMessage}</div>
+        {userData.savedConvos.map((convo) => {
+          return (
+            <div className="chat-log" key={convo.convoId}>
+              <div className="chat-message">
+                <div className="chat-message-center">
+                  <div className="avatar"></div>
+                  <div className="message">User chat : {sentMessage}</div>
+                </div>
+              </div>
+              <div className="chat-message ai">
+                <div className="chat-message-center">
+                  <div className="avatar"></div>
+                  <div className="message">AI message: {response}</div>
+                </div>
+              </div>
             </div>
-          </div>
-          {/* ai chat */}
-          <div className="chat-message-ai">
-            <div className="chat-message-center">
-              <div className="avatar"></div>
-              <div className="message">AI message: {response}</div>
-            </div>
-          </div>
-        </div>
+          );
+        })}
         <div className="chat-input-holder">
           <textarea
             value={userInput}
@@ -59,5 +90,5 @@ function Chat({ user }) {
     </div>
   );
 }
-
 export default Chat;
+

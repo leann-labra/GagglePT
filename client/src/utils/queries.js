@@ -8,16 +8,11 @@ export const GET_USER = gql`
       username
       email
       password
-    }
-  }
-`;
-
-export const GET_CONVOS = gql`
-  subscription {
-    conversations {
-      id
-      user
-      text
+      savedConvos {
+        convoId
+        question
+        reply
+      }
     }
   }
 `;

@@ -13,11 +13,6 @@ const convoSchema = new Schema({
     maxlength: 500,
     trim: true,
   },
-
-  bookmarks: {
-    type: Boolean,
-  },
-
   reply: [
     {
       replyText: {
