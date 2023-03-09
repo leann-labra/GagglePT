@@ -70,6 +70,18 @@ const resolvers = {
         }
       );
     },
+    addCategory: async (parent, { userId, convoId, category }) => {
+      return Conversations.findOneAndUpdate(
+        { _id: convoId },
+        {
+          $addToSet: { category: { category } },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
     // addCategory: async (parent, { userId, convoId, category }) => {
     //   return Conversations.findOneAndUpdate(
     //     { _id: convoId },
