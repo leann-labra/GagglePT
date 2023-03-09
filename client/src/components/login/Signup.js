@@ -13,7 +13,7 @@ export default function SignUp({ currentPage, handlePageChange }) {
       </div>
       <div className='signup pass'>
         {/* hide pass input */}
-        <input placeholder='Enter a password'></input>
+        <input placeholder='Enter a password' type="password"></input>
       </div>
         <button
                 href="#Chat"

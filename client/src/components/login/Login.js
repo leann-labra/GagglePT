@@ -11,7 +11,7 @@ export default function Login({ currentPage, handlePageChange }) {
       </div>
       <div className='login pass'>
         {/* hide input */}
-        <input placeholder='Password'></input>
+        <input placeholder='Password' type="password"></input>
       </div>
         <button
          href="#Chat"

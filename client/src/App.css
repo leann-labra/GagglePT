@@ -27,6 +27,8 @@ body {
   align-items: right;
   background-color: #1c1e20;
   padding: 12px;
+  width: 35%;
+  color: white;
 }
 .signinbox > button {
   background-color:#cdd0d6;
