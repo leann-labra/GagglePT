@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import Convo from "./Convo";
-
 function Chat({ user }) {
   const [userInput, setUserInput] = useState("");
   const [sentMessage, setSentMessage] = useState("");
@@ -57,7 +55,6 @@ function Chat({ user }) {
             Goose it
           </button>
         </div>
-        {/* <Convo /> */}
       </section>
     </div>
   );
