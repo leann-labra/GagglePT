@@ -1,10 +1,24 @@
-import React from "react";
-import "./App.css";
-import "./normalize.css";
-
-import Convo from "./components/Convo";
+import React, { useState } from "react";
 
 function Chat({ user }) {
+  const [userInput, setUserInput] = useState("");
+  const [sentMessage, setSentMessage] = useState("");
+  const [response, setResponse] = useState("");
+  const handleSubmit = (e) => {
+    setSentMessage(userInput);
+    e.preventDefault();
+    fetch("/", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userInput }),
+    })
+      .then((data) => data.json())
+      .then((data) => setResponse(data));
+  };
+  const handleChange = (e) => setUserInput(e.target.value);
   return (
     <div className="App">
       <aside className="side-menu">
@@ -19,18 +33,28 @@ function Chat({ user }) {
           <div className="chat-message">
             <div className="chat-message-center">
               <div className="avatar"></div>
-              <div className="message">User chat</div>
+              <div className="message">User chat : {sentMessage}</div>
             </div>
           </div>
           {/* ai chat */}
           <div className="chat-message ai">
             <div className="chat-message-center">
               <div className="avatar"></div>
-              <div className="message">AI message</div>
+              <div className="message">AI message: {response}</div>
             </div>
           </div>
         </div>
-        <Convo />
+        <div className="chat-input-holder">
+          <textarea
+            value={userInput}
+            className="chat-input-ta"
+            placeholder="Type here to chat..."
+            onChange={handleChange}
+          ></textarea>
+          <button className="submit-btn" type="button" onClick={handleSubmit}>
+            Goose it
+          </button>
+        </div>
       </section>
     </div>
   );

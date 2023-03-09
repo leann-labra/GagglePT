@@ -30,13 +30,15 @@ if (process.env.NODE_ENV === "production") {
 
 app.post("/", async (req, res) => {
   try {
+    console.log("body~ ", req.body);
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: req.body.message,
+      prompt: req.body.userInput,
       max_tokens: 10,
-      temperature: 0.7,
+      temperature: 0.5,
     });
-    console.log(response.data);
+    console.log("RESPONSE!~ ", response.data);
+    // save to db here
     res.json(response.data.choices[0].text);
   } catch (err) {
     res.status(427).json(err);
