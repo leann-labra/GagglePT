@@ -23,7 +23,6 @@ const SignupForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-        // Use try/catch 
       try {
         // Executes addUser fx
         const { data } = await addUser({
