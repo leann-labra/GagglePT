@@ -1,6 +1,8 @@
 // this will create a react component that inputs a text area message then preforms a fetch request to our openapi and get back a response and displays that response
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
+import "./normalize.css";
+
 
 //importing apollo client
 import {
@@ -14,6 +16,8 @@ import { setContext } from "@apollo/client/link/context";
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // import routes from other pages and components here
+import Chat from "./components/Chat.js";
+import NavBar from "./components/Navbar.js";
 
 //accessing database from graphql
 const httpLink = createHttpLink({
@@ -40,29 +44,11 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const [input, setInput] = useState("");
-  const [chatLog, setChatLog] = useState("");
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setChatLog([...chatLog, {user : "me", message : `${input}`} ]);
-    setInput("");
-
-    console.log("submit");
-  }
-
   return (
     <ApolloProvider client={client}>
       {/* add routes here for whichever pages or components if there are any */}
-      <div className="App">
-        <form onSubmit={handleSubmit}>
-          <textarea
-            value={message}
-            onChange={() => setMessage(message) = e.target.value}
-          ></textarea>
-          <button type="submit">submit</button>
-        </form>
-        <div>{chatLog}</div>
-      </div>
+      <NavBar />
+      <Chat />
     </ApolloProvider>
   );
 }
