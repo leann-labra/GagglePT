@@ -16,8 +16,9 @@ import { setContext } from "@apollo/client/link/context";
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // import routes from other pages and components here
-import Chat from "./components/Chat.js";
+// import Chat from "./components/Chat.js";
 import NavBar from "./components/Navbar.js";
+// import Login from "./components/login/Login";
 
 //accessing database from graphql
 const httpLink = createHttpLink({
@@ -47,8 +48,10 @@ function App() {
   return (
     <ApolloProvider client={client}>
       {/* add routes here for whichever pages or components if there are any */}
+      {/* Login will direct pages */}
+      {/* <Login /> */}
       <NavBar />
-      <Chat />
+      {/* <Chat /> */}
     </ApolloProvider>
   );
 }

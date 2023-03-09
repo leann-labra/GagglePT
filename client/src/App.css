@@ -7,6 +7,42 @@
   top:0;bottom: 0;
 right:0;left:0}
 
+.signinbox {
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 60px;
+}
+.signinbox > a {
+  color: #949aa5;
+}
+.signinbox > div > input {
+  border: none;
+  border-radius: 5px;
+  margin: 1px;
+  align-items: right;
+  background-color: #1c1e20;
+  padding: 12px;
+}
+.signinbox > button {
+  background-color:#cdd0d6;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 12px 5px 12px;
+  cursor: pointer;
+  margin: 10px;
+}
+.signinbox > button:hover {
+  background-color: #13161d;
+  color: white;
+  transition: ease .25s;
+}
+.banner {
+  font-size: 32px;
+  padding-bottom: 30px;
+}
+
+
 .side-menu {
   width: 240px;
   background-color: #1c1e20;
