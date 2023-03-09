@@ -1,5 +1,81 @@
 .App {
   text-align: center;
+  display: flex;
+  background-color: #282c34;
+  color: white;
+  position: absolute;
+  top:0;bottom: 0;
+right:0;left:0}
+
+.side-menu {
+  width: 240px;
+  background-color: #1c1e20;
+  padding: 10px;
+}
+.side-menu-button {
+  border-radius: 10px;
+  border: 1px solid grey;
+  padding: 12px;
+  text-align: left;
+}
+.side-menu-button > span {
+  padding: 0 6px 0 12px;
+}
+.side-menu-button:hover {
+  background-color: #282c34;
+  transition: ease .35s;
+}
+
+.chatbox {
+  flex: 1;
+  position: relative;
+}
+.chat-input-holder {
+  padding: 12px;
+  position: absolute;
+  bottom: 0; left:0;right:0;
+  }
+.chat-input-ta {
+  background-color: #3f444e;
+  width: 100%;
+  height: 100px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  padding: 12px;
+  color: white;
+  font-size: 14px;
+}
+
+.chat-log {
+  /* padding: 24px; */
+  text-align: left;
+  /* display: flex; */
+}
+.chat-message {
+  /* padding-left: 40px; */
+}
+.chat-message-center {
+  display: flex;
+  padding: 12px;
+  /* padding-left: 40px; */
+  padding-right: 40px;
+  max-width: 640px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.chat-message.ai {
+  background-color: #3f444e;
+}
+.avatar {
+background-color: white;
+border-radius: 50%;
+width: 40px;
+height: 40px;
+}
+.message {
+padding-left: 40px;
+padding-top: 12px;
 }
 
 .App-logo {

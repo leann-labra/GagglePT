@@ -1,6 +1,8 @@
 // this will create a react component that inputs a text area message then preforms a fetch request to our openapi and get back a response and displays that response
 import React, { useState } from "react";
 import "./App.css";
+import "./normalize.css";
+
 
 //importing apollo client
 import {
@@ -60,14 +62,45 @@ function App() {
     <ApolloProvider client={client}>
       {/* add routes here for whichever pages or components if there are any */}
       <div className="App">
-        <form onSubmit={handleSubmit}>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          ></textarea>
-          <button type="submit">submit</button>
-        </form>
-        <div>{response}</div>
+        <aside className="side-menu">
+          <div className="side-menu-button">
+            <span>+</span>
+            New Chat
+          </div>
+        </aside>
+        <section class="chatbox">
+          <div className="chat-log">
+            {/* user chat */}
+            <div className="chat-message">
+                <div className="chat-message-center">
+
+                <div className="avatar">
+
+                </div>
+                <div className="message">
+                  User chat
+                </div>
+              </div>
+            </div>
+            {/* ai chat */}
+            <div className="chat-message ai">
+              <div className="chat-message-center">
+                <div className="avatar">
+
+                </div>
+                <div className="message">
+                  AI message
+                  </div>
+                  </div>
+            </div>
+          </div>
+          <div className="chat-input-holder">
+            <textarea className="chat-input-ta">
+
+            </textarea>
+          </div>
+
+        </section>
       </div>
     </ApolloProvider>
   );
