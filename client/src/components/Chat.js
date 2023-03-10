@@ -32,7 +32,7 @@ function Chat() {
   const handleSubmit = (e) => {
     setSentMessage(userInput);
     e.preventDefault();
-    fetch("/", {
+    fetch("/api/ask", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,6 +42,7 @@ function Chat() {
       .then((data) => data.json())
       .then((data) => setResponse(data));
   };
+
   const handleChange = (e) => setUserInput(e.target.value);
 
   // if (!userDataLength) {
