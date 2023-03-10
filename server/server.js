@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
-console.log(process.env.ORG_KEY);
+
 // importing apollo
 const { ApolloServer } = require("apollo-server-express");
 
@@ -22,7 +22,7 @@ const server = new ApolloServer({
 });
 
 const configuration = new Configuration({
-  organization: process.env.ORG_KEY,
+  organization:process.env.ORG_KEY,
   apiKey: process.env.API_KEY,
 });
 
@@ -35,40 +35,19 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
 
-app.post("/api/ask", async ({ body }, res) => {
+app.post("/", async (req, res) => {
   try {
-    console.log("body~ ", body.userInput);
-
+    console.log("body~ ", req.body);
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt:"hello",
+      prompt: req.body.userInput,
       max_tokens: 100,
       temperature: 0.5,
-      top_p:1,
-      frequency_penalty:0,
-      presence_penalty:0,
-      stop:["\n"]
     });
-    console.log("RESPONSE!~ ", response);
-    // save to db here
-    // saving data to graphQL
-    // const { data } = await client.mutate({
-    //   mutation: SAVE_DATA_MUTATION,
-    //   variables: {
-    //     input: req.body.userInput,
-    //     output: response.data.choices[0].text,
-    //   },
-    // });
-    // handle the response from the GraphQL server
-    // if (data.saveData.success) {
-    // res.json(response.data.choices[0].text);
-    // } else {
-    //   throw new Error(data.saveData.message);
-    // }
+    console.log("RESPONSE!~ ", response.data);
     // save response and req.body to graphql db
-    // res.json(response.data.choices[0].text);
+    res.json(response.data.choices[0].text);
   } catch (err) {
-    console.log(err)
     res.status(427).json(err);
   }
 });

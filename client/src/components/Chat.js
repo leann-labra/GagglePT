@@ -6,9 +6,10 @@ import { GET_USER } from "../utils/queries";
 function Chat() {
   const [userData, setUserData] = useState({});
   const userDataLength = Object.keys(userData).length;
-  const { data } = useQuery(GET_USER, {
-    variables: { username: Auth.getProfile().data._id },
-  });
+  
+  // const { data } = useQuery(GET_USER, {
+  //   variables: { username: Auth.getProfile().data._id },
+  // });
 
   const [userInput, setUserInput] = useState("");
   const [sentMessage, setSentMessage] = useState("");
@@ -32,7 +33,7 @@ function Chat() {
   const handleSubmit = (e) => {
     setSentMessage(userInput);
     e.preventDefault();
-    fetch("/api/ask", {
+    fetch("/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +70,7 @@ function Chat() {
               <div className="chat-message ai">
                 <div className="chat-message-center">
                   <div className="avatar"></div>
-                  <div className="message">AI message: response</div>
+                  <div className="message">AI message: {response}</div>
                 </div>
               </div>
             </div>
