@@ -1,17 +1,50 @@
 import React, { useState } from "react";
-import SignUpForm from "./SignUpForm";
-import LoginForm from "./LoginForm";
+
+//components
+import Chat from "./Chat";
+import Login from "./login/Login";
+import SignUp from "./login/Signup";
+
 
 function NavBar() {
-  return (
-    <section>
-      <h1>NavBar Placeholder</h1>
+  const [ currentPage, setCurrentPage ] = useState('LogIn');
+
+  const renderPage = () => {
+    if (currentPage === 'Chat') {
+      return (
+        <div>
+          <Chat 
+          />
+        </div>
+      )
+    }
+    if (currentPage === 'SignUp') {
+      return (
+        <div>
+          <SignUp />
+        </div>
+      )
+    }
+    if (currentPage === "Login"){
+    return (
       <div>
-        <SignUpForm />
-        <LoginForm />
+        <Login />
       </div>
-    </section>
-  );
+    )
+    }
+  };
+
+  const handlePageChange = (page) => setCurrentPage(page);
+
+  return (
+    <div>
+      <Login 
+      currentPage={currentPage}
+      handlePageChange={handlePageChange}
+      />
+      {renderPage()}
+    </div>
+  )
 }
 
 export default NavBar;
