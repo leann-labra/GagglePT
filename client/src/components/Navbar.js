@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-// import SignUpForm from "./signUpForm";
-// import LoginForm from "./loginForm";
-import Login from "./login/Login";
-import Signup from "./login/Signup";
+
+//components
 import Chat from "./Chat";
-import React from "react";
+import Login from "./login/Login";
+import SignUp from "./login/Signup";
 
 
 function NavBar() {
-  const [currentPage, setCurrentPage ] = useState('LogIn');
+  const [ currentPage, setCurrentPage ] = useState('LogIn');
 
   const renderPage = () => {
     if (currentPage === 'Chat') {
@@ -22,7 +21,7 @@ function NavBar() {
     if (currentPage === 'SignUp') {
       return (
         <div>
-          <Signup />
+          <SignUp />
         </div>
       )
     }

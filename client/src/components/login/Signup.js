@@ -16,11 +16,12 @@ export default function SignUp({ currentPage, handlePageChange }) {
         <input placeholder='Enter a password' type="password"></input>
       </div>
         <button
-                href="#Chat"
-                //  onClick needs to be dependent on login factors
-                 onClick={() => handlePageChange('Chat')}
-                 className={currentPage === 'Chat' ? 'nav-link active' : 'nav-link'}
-                 >Create my account
+            href="#Chat"
+            //  onClick needs to be dependent on login factors
+            onClick={() => handlePageChange('Chat')}
+            className={currentPage === 'Chat' ? 'nav-link active' : 'nav-link'}
+            >
+                Create my account
         </button>
         <br></br>
         {/* <a
@@ -33,4 +34,3 @@ export default function SignUp({ currentPage, handlePageChange }) {
     </div>
   );
 }
-

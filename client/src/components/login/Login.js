@@ -10,10 +10,10 @@ export default function Login({ currentPage, handlePageChange }) {
         <input placeholder='Username'></input>
       </div>
       <div className='login pass'>
-        {/* hide input */}
         <input placeholder='Password' type="password"></input>
       </div>
         <button
+        // takes user directly to chatroom
          href="#Chat"
         //  onClick needs to be dependent on login factors
          onClick={() => handlePageChange('Chat')}
@@ -22,7 +22,7 @@ export default function Login({ currentPage, handlePageChange }) {
         </button>
         <br></br>
         <a
-        href="#Signup"
+        href="#SignUp"
         onClick={() => handlePageChange('SignUp')}
         className={currentPage === 'SignUp' ? 'nav-link active' : 'nav-link'}
         >
@@ -31,4 +31,3 @@ export default function Login({ currentPage, handlePageChange }) {
     </div>
   );
 }
-
