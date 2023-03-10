@@ -1,5 +1,5 @@
-import React from "react";
-import SignUpForm from "./SignupForm";
+import React, { useState } from "react";
+import SignUpForm from "./SignUpForm";
 import LoginForm from "./LoginForm";
 
 function NavBar() {

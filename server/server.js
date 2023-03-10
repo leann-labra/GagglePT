@@ -1,6 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
-
+console.log(process.env.ORG_KEY);
 // importing apollo
 const { ApolloServer } = require("apollo-server-express");
 const { ApolloClient, InMemoryCache, gql } = require("@apollo/client");
@@ -8,7 +9,7 @@ const { ApolloClient, InMemoryCache, gql } = require("@apollo/client");
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
 const { Configuration, OpenAIApi } = require("openai");
-require("dotenv").config();
+
 
 const { authMiddleware } = require("./utils/auth");
 
@@ -48,19 +49,19 @@ app.post("/", async (req, res) => {
     console.log("RESPONSE!~ ", response.data);
     // save to db here
     // saving data to graphQL
-    const { data } = await client.mutate({
-      mutation: SAVE_DATA_MUTATION,
-      variables: {
-        input: req.body.userInput,
-        output: response.data.choices[0].text,
-      },
-    });
+    // const { data } = await client.mutate({
+    //   mutation: SAVE_DATA_MUTATION,
+    //   variables: {
+    //     input: req.body.userInput,
+    //     output: response.data.choices[0].text,
+    //   },
+    // });
     // handle the response from the GraphQL server
-    if (data.saveData.success) {
+    // if (data.saveData.success) {
       res.json(response.data.choices[0].text);
-    } else {
-      throw new Error(data.saveData.message);
-    }
+    // } else {
+    //   throw new Error(data.saveData.message);
+    // }
     // save response and req.body to graphql db
     res.json(response.data.choices[0].text);
   } catch (err) {
