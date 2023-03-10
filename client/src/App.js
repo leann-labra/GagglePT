@@ -2,7 +2,8 @@
 import React from "react";
 import "./App.css";
 import "./normalize.css";
-
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { setContext } from '@apollo/client/link/context';
 
 //importing apollo client
 import {
@@ -18,26 +19,53 @@ import {
 // import routes from other pages and components here
 // import Login from "./components/login/Login";
 import NavBar from "./components/Navbar";
+import Chat from "./components/Chat";
+import Login from "./components/login/Login";
+import SignUp from "./components/login/Signup";
 
-const client = new ApolloClient({ 
-  link: createHttpLink({ uri: 'http://localhost:3001.com/graphql' }),
-  cache: new InMemoryCache(),
-  request: (operation) => {
-    const token = localStorage.getItem("id_token");
-    operation.setContext({
-      headers: {
-        authorization: token ? `Bearer ${token}` : "",
-      },
-    });
-  },
-  uri: "/graphql",
+const httpLink = createHttpLink({
+  uri: '/graphql',
 });
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
 
 function App() {
   return (
     <ApolloProvider client={client}>
+      <NavBar/>
+      <Router>
+        <Routes>
+          <Route
+          path="/"
+          element={<Chat />}
+          />
+          <Route
+          path="/login"
+          element={<Login/>}
+          />
+          <Route
+          path="/signup"
+          element={<SignUp/>}
+          />
+        </Routes>
       {/* add routes here for whichever pages or components if there are any */}
-      <NavBar />
+      
+      
+      </Router>
     </ApolloProvider>
   );
 }
