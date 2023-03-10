@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
+const convoSchema = require("./Conversations");
 
 const userSchema = new Schema(
   {
@@ -34,7 +35,6 @@ userSchema.pre("save", async function (next) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
-
   next();
 });
 

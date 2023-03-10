@@ -14,39 +14,40 @@ function Chat() {
   const [sentMessage, setSentMessage] = useState("");
   const [response, setResponse] = useState("");
 
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
-        if (!token) {
-          return false;
-        }
-        setUserData(data?.user || []);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    getUserData();
-  });
+  // useEffect(() => {
+  //   const getUserData = async () => {
+  //     try {
+  //       const token = Auth.loggedIn() ? Auth.getToken() : null;
+  //       if (!token) {
+  //         return false;
+  //       }
+  //       setUserData(data?.user || []);
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
+  //   getUserData();
+  // });
 
   const handleSubmit = (e) => {
     setSentMessage(userInput);
     e.preventDefault();
-    fetch("/", {
+    fetch("/api/ask", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userInput }),
+       body: JSON.stringify({ userInput }),
     })
       .then((data) => data.json())
       .then((data) => setResponse(data));
   };
+
   const handleChange = (e) => setUserInput(e.target.value);
 
-  if (!userDataLength) {
-    return <h2>LOADING...</h2>;
-  }
+  // if (!userDataLength) {
+  //   return <h2>LOADING...</h2>;
+  // }
 
   return (
     <div className="App">
@@ -57,9 +58,8 @@ function Chat() {
         </div>
       </aside>
       <section className="chatbox">
-        {userData.savedConvos.map((convo) => {
-          return (
-            <div className="chat-log" key={convo.convoId}>
+        {/* {userData.savedConvos.map((convo) => { */}
+            <div className="chat-log" >
               <div className="chat-message">
                 <div className="chat-message-center">
                   <div className="avatar"></div>
@@ -69,12 +69,10 @@ function Chat() {
               <div className="chat-message ai">
                 <div className="chat-message-center">
                   <div className="avatar"></div>
-                  <div className="message">AI message: {response}</div>
+                  <div className="message">AI message: response</div>
                 </div>
               </div>
             </div>
-          );
-        })}
         <div className="chat-input-holder">
           <textarea
             value={userInput}
