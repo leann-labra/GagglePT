@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Login from "./login/Login";
 import Signup from "./login/Signup";
 import Chat from "./Chat";
-import SignUp from "./login/Signup";
+import React from "react";
+
 
 function NavBar() {
   const [currentPage, setCurrentPage ] = useState('LogIn');

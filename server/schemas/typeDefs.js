@@ -6,23 +6,14 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    categories: [Category!]
-    conversations: [Conversations!]
-  }
-
-  type Category {
-    _id: ID!
-    category: String
-    conversations: [Conversations!]
+    savedConvos: [Conversations]
   }
 
   type Conversations {
     _id: ID!
-    category: String
+    convoId: String
     question: String
-    reply: [String]
-    categories: Category!
-    bookmarks: Boolean
+    reply: String
   }
 
   type Auth {
@@ -32,11 +23,10 @@ const typeDefs = gql`
 
   input conversationInput {
     _id: ID!
-    category: String
     question: String
     reply: [String]
-    bookmarks: Boolean
   }
+
   type Query {
     users: User
     user(username: String!): User
@@ -45,8 +35,7 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addConversation(input: conversationInput!): Conversations
-    deleteConversation(conversationsId: ID!): Conversations
+    addConversation(input: conversationInput!): User
   }
 `;
 

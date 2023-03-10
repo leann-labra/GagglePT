@@ -2,9 +2,6 @@ const { Schema, model } = require("mongoose");
 
 // saving the convoSchema as a subdocument of Users since each user has saved chats
 const convoSchema = new Schema({
-  category: {
-    type: String,
-  },
   convoId: {
     type: String,
     required: true,
@@ -16,11 +13,6 @@ const convoSchema = new Schema({
     maxlength: 500,
     trim: true,
   },
-
-  bookmarks: {
-    type: Boolean,
-  },
-
   reply: [
     {
       replyText: {

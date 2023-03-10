@@ -4,8 +4,11 @@
   background-color: #282c34;
   color: white;
   position: absolute;
-  top:0;bottom: 0;
-right:0;left:0}
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
 
 body {
   background-color: #282c34;
@@ -65,7 +68,7 @@ body {
 }
 .side-menu-button:hover {
   background-color: #282c34;
-  transition: ease .35s;
+  transition: ease 0.35s;
 }
 
 .chatbox {
@@ -75,8 +78,10 @@ body {
 .chat-input-holder {
   padding: 10px;
   position: absolute;
-  bottom: 0; left:0;right:0;
-  }
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 .chat-input-ta {
   background-color: #3f444e;
   width: 80%;
@@ -87,21 +92,21 @@ body {
   outline: none;
   color: white;
   font-size: 14px;
-  vertical-align: middle
+  vertical-align: middle;
 }
 .submit-btn {
   background-color: #435270;
   border: none;
-  height:100px;
+  height: 100px;
   width: 100px;
-  color:#f3f5f9;
+  color: #f3f5f9;
   cursor: pointer;
   border-radius: 0 10px 10px 0;
-  vertical-align: middle
+  vertical-align: middle;
 }
 .submit-btn:hover {
   background-color: #62759a;
-  transition: ease .5s;
+  transition: ease 0.5s;
 }
 
 .chat-log {
@@ -121,19 +126,21 @@ body {
   max-width: 640px;
   margin-left: 100px;
   margin-right: 100px;
+  height: fit-content;
 }
-.chat-message.ai {
+.chat-message-ai {
   background-color: #3f444e;
+  height: fit-content;
 }
 .avatar {
-background-color: white;
-border-radius: 50%;
-width: 40px;
-height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
 }
 .message {
-padding-left: 40px;
-padding-top: 12px;
+  padding-left: 40px;
+  padding-top: 12px;
 }
 
 .App-logo {
