@@ -13,21 +13,17 @@ import {
   createHttpLink,
 } from "@apollo/client";
 
-
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 // import routes from other pages and components here
-// import Login from "./components/login/Login";
 import NavBar from "./components/Navbar";
 import Chat from "./components/Chat";
 import Login from "./components/login/Login";
 import SignUp from "./components/login/Signup";
 
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
-
-const authLink = setContext((_, { headers }) => {
+  const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
     headers: {
@@ -51,7 +47,7 @@ function App() {
         <Routes>
           <Route
           path="/"
-          element={<Chat />}
+          element={<Chat/>}
           />
           <Route
           path="/login"
@@ -62,9 +58,6 @@ function App() {
           element={<SignUp/>}
           />
         </Routes>
-      {/* add routes here for whichever pages or components if there are any */}
-      
-      
       </Router>
     </ApolloProvider>
   );

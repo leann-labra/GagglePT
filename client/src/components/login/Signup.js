@@ -25,7 +25,7 @@ export default function SignUp({ currentPage, handlePageChange }) {
       const { data } = await addUser({
         variables: { ...userFormData },
       });
-      Auth.login(data.addUser.token);
+      Auth.loggedIn(data.addUser.token);
     } catch (e) {
       console.error(e);
       setShowAlert(true);
@@ -70,7 +70,6 @@ export default function SignUp({ currentPage, handlePageChange }) {
         />
       </div>
       <button
-        href="#Chat"
         //  onClick needs to be dependent on login factors
         onClick={handleFormSubmit}
         className={currentPage === "Chat" ? "nav-link active" : "nav-link"}

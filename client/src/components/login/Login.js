@@ -5,12 +5,14 @@ import { LOGIN_USER } from "../../utils/mutations";
 import {Link} from "react-router-dom";
 
 export default function Login({ currentPage, handlePageChange }) {
+    // Sets initial form statez
   const [userFormData, setUserFormData] = useState({
     email: "",
     password: "",
   });
   
   //Ammended loginUser import
+  const [showAlert, setShowAlert] = useState(false);
   const [loginUser] = useMutation(LOGIN_USER);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -22,9 +24,10 @@ export default function Login({ currentPage, handlePageChange }) {
       const { data } = await loginUser({
         variables: { ...userFormData },
       });
-      Auth.login(data.login.token);
+      Auth.login(data.loginUser.token);
     } catch (e) {
       console.error(e);
+      setShowAlert(true);
     }
     setUserFormData({
       email: "",
@@ -36,6 +39,7 @@ export default function Login({ currentPage, handlePageChange }) {
       <div className="login banner">Sign into GagglePT!</div>
       <div className="login user">
         <input
+         id="email"
           type="email"
           name="email"
           value={userFormData.email}
@@ -45,6 +49,7 @@ export default function Login({ currentPage, handlePageChange }) {
       </div>
       <div className="login pass">
         <input
+          id="password"
           type="password"
           name="password"
           value={userFormData.password}
@@ -53,14 +58,13 @@ export default function Login({ currentPage, handlePageChange }) {
         ></input>
       </div>
       <button
-      type="submit"
+        onClick={handleFormSubmit}
         className={currentPage === "Chat" ? "nav-link active" : "nav-link"}
       > Login
       </button>
       <br></br>
      <Link
-      to="/signup"
-      >
+      to="/signup">
        No account? Sign up here</Link>
     </div>
   );

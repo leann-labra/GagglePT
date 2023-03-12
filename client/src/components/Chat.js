@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import Auth from "../utils/auth";
-import { useQuery } from "@apollo/client";
-import { GET_USER } from "../utils/queries";
+import React, { useState } from "react";
+import {Link} from "react-router-dom";
+// import Auth from "../utils/auth";
+// import { useQuery } from "@apollo/client";
+// import { GET_USER } from "../utils/queries";
 
 function Chat() {
-  const [userData, setUserData] = useState({});
-  const userDataLength = Object.keys(userData).length;
+  // const [userData, setUserData] = useState({});
+  // const userDataLength = Object.keys(userData).length;
   
   // const { data } = useQuery(GET_USER, {
   //   variables: { username: Auth.getProfile().data._id },
@@ -53,10 +54,8 @@ function Chat() {
   return (
     <div className="App">
       <aside className="side-menu">
-        <div className="side-menu-button">
-          <span>+</span>
-          New Chat
-        </div>
+        <Link className="side-menu-button" to="/login" > Sign In
+        </Link>
       </aside>
       <section className="chatbox">
         {/* {userData.savedConvos.map((convo) => { */}

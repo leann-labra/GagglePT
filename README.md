@@ -6,10 +6,11 @@ The motivation for this project is to build an application that allows a user to
 
 In completing this project, we have learned the basic concepts of utilizing MERN.
 
-![GaggleptScreenshot]()
+![GaggleptScreenshot](client/public/gagglept.png)
 
 ### Deployed Link
-- heroku link here
+
+- https://gagglept.herokuapp.com/
 
 ## Tools Utilized
 
