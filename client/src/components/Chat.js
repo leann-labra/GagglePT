@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom";
 // import Auth from "../utils/auth";
 // import { useQuery } from "@apollo/client";
 // import { GET_USER } from "../utils/queries";
@@ -53,10 +54,8 @@ function Chat() {
   return (
     <div className="App">
       <aside className="side-menu">
-        <div className="side-menu-button">
-          <span>+</span>
-          New Chat
-        </div>
+        <Link className="side-menu-button" to="/login" > Sign In
+        </Link>
       </aside>
       <section className="chatbox">
         {/* {userData.savedConvos.map((convo) => { */}

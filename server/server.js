@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.post("/", async (req, res) => {
   try {
-    console.log("body~ ", req.body.userInput);
+    console.log("body~ ", req.body);
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: req.body.userInput,
