@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import Auth from "../utils/auth";
-import { useQuery } from "@apollo/client";
-import { GET_USER } from "../utils/queries";
+import React, { useState } from "react";
+// import Auth from "../utils/auth";
+// import { useQuery } from "@apollo/client";
+// import { GET_USER } from "../utils/queries";
 
 function Chat() {
-  const [userData, setUserData] = useState({});
-  const userDataLength = Object.keys(userData).length;
+  // const [userData, setUserData] = useState({});
+  // const userDataLength = Object.keys(userData).length;
   
   // const { data } = useQuery(GET_USER, {
   //   variables: { username: Auth.getProfile().data._id },

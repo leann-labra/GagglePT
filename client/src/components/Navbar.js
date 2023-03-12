@@ -12,8 +12,6 @@ function NavBar() {
       return (
         <div>
           <Login
-            currentPage={currentPage}
-            handlePageChange={handlePageChange}
           />
         </div>
       )
@@ -34,7 +32,6 @@ function NavBar() {
     }
     
   };
-  const handlePageChange = (page) => setCurrentPage(page);
   return (
     <div>
       {/* {renderPage()} */}

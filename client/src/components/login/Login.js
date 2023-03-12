@@ -54,6 +54,7 @@ export default function Login({ currentPage, handlePageChange }) {
       </div>
       <button
       type="submit"
+      onClick={handleFormSubmit}
         className={currentPage === "Chat" ? "nav-link active" : "nav-link"}
       > Login
       </button>
