@@ -8,16 +8,6 @@ import SignUp from "./login/Signup";
 function NavBar() {
   const [ currentPage, setCurrentPage ] = useState('Login');
   const renderPage = () => {
-   if (currentPage === 'Login'){
-      return (
-        <div>
-          <Login
-            currentPage={currentPage}
-            handlePageChange={handlePageChange}
-          />
-        </div>
-      )
-    } 
     if (currentPage === 'Chat') {
       return (
         <div>
@@ -32,7 +22,16 @@ function NavBar() {
         </div>
       )
     }
-    
+    if (currentPage === 'Login'){
+      return (
+        <div>
+          <Login
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+          />
+        </div>
+      )
+    }
   };
   const handlePageChange = (page) => setCurrentPage(page);
   return (

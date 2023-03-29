@@ -58,10 +58,13 @@ body {
   padding: 10px;
 }
 .side-menu-button {
+  
   border-radius: 10px;
   border: 1px solid grey;
-  padding: 12px;
+  padding: 30px;
   text-align: left;
+  text-decoration: none;
+  color:white;
 }
 .side-menu-button > span {
   padding: 0 6px 0 12px;
